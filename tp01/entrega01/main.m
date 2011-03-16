@@ -37,7 +37,7 @@ function y = main()
             W = W + delta_W;                             % corrijo
         end
         error = calc_error(S, O);                       % calculo el error
-        epoch = epoch + 1
+        epoch = epoch + 1;
     end
     error, epoch
 
