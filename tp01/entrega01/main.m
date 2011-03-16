@@ -2,14 +2,14 @@ function y = main()
 
 
     eta = 0.2;
-    random_seed = 31321321;
+    random_seed = 313213221;
     N_EPOCHS = 1000;
     rand('state', random_seed);
     randn('state', random_seed);
     W = init_weights(2+1);
     inputs = [struct("pattern",[-1,-1,-1], "output", -1),
-              struct("pattern",[-1,-1,1], "output", 1),
-              struct("pattern",[-1,1,-1], "output", 1),
+              struct("pattern",[-1,-1,1], "output", -1),
+              struct("pattern",[-1,1,-1], "output", -1),
               struct("pattern",[-1,1,1], "output", 1)
             ];
     S = zeros(length(inputs));
@@ -33,7 +33,7 @@ function y = main()
             
             O(xi_index) = g(h);                          % calculo la salida para ese potencial
             Si = inputs(xi_index);                            % obtengo la salida real para esta entrada
-            delta_W = delta(Si.pattern, O(xi_index), eta, xi, h);           % calculo las correcciones
+            delta_W = delta(Si.pattern, O(xi_index), eta, xi, h)          % calculo las correcciones
             W = W + delta_W;                             % corrijo
         end
         error = calc_error(S, O);                       % calculo el error
