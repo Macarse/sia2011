@@ -1,8 +1,8 @@
 function y = main()
 
 
-    eta = 0.2;
-    random_seed = 313213221;
+    eta = 0.9;
+    random_seed = 1337;
     N_EPOCHS = 1000;
     rand('state', random_seed);
     randn('state', random_seed);
@@ -33,13 +33,15 @@ function y = main()
             
             O(xi_index) = g(h);                          % calculo la salida para ese potencial
             Si = inputs(xi_index);                            % obtengo la salida real para esta entrada
-            delta_W = delta(Si.pattern, O(xi_index), eta, xi, h)          % calculo las correcciones
+            delta_W = delta(Si.pattern, O(xi_index), eta, xi, h);          % calculo las correcciones
             W = W + delta_W;                             % corrijo
         end
         error = calc_error(S, O);                       % calculo el error
         epoch = epoch + 1;
     end
-    error, epoch
+    printf("params:\n");
+    printf("eta: %f, randomSeed: %d, beta: %s\n", eta, random_seed, "?");
+    printf("error: %f. Epochs: %d\n", error, epoch);
 
 
     y = W;
