@@ -1,18 +1,14 @@
 
 function y = main()
-    global g_diff;
 
-    beta = 0.5;
-    g = inline(sprintf('tanh(%f*x)', beta));
-	g_diff = inline(sprintf('(%f) * (1 - g(x).^2)', beta));
-    eta = 2.5;
-    N = 2;
+    params = getParams();
+
     random_seed = 1337;
-    N_EPOCHS = 15000;
     rand('state', random_seed);
     randn('state', random_seed);
-    W = init_weights(N+1);
-    inputs = get_inputs(N);
+    
+    W = init_weights(params.N+1);
+    inputs = get_inputs(params.N);
     S = zeros(length(inputs));
     for i = 1:length(inputs),
         S(i) = inputs(i).output;
@@ -23,7 +19,7 @@ function y = main()
     error = tole + 1;
     epoch = 1;
 
-    while (error > tole && epoch < N_EPOCHS)
+    while (error > tole && epoch < params.N_EPOCHS)
         perm = randperm(length(inputs));
         inputs = inputs(perm);
         S = S(perm);
@@ -32,23 +28,24 @@ function y = main()
             xi = inputs(xi_index);                       % tomo una entrada al azar del conjunto de entradas
             h = potencial(W, xi);                        % calculo el potencial para esa entrada
 
-            O(xi_index) = g(h);                          % calculo la salida para ese potencial
+            O(xi_index) = params.g(h);                          % calculo la salida para ese potencial
             Si = inputs(xi_index);                            % obtengo la salida real para esta entrada
-            delta_W = delta(Si.output, O(xi_index), eta, xi, h);          % calculo las correcciones
+            delta_W = delta(Si.output, O(xi_index), params.eta, xi, h, params.g_diff);          % calculo las correcciones
             W = W + delta_W;                             % corrijo
         end
         error = calc_error(S, O);                       % calculo el error
         epoch = epoch + 1;
     end
+
     printf("params:\n");
-    printf("eta: %f, randomSeed: %d, beta: %s\n", eta, random_seed, "?");
+    params
     printf("error: %f. Epochs: %d\n\n", error, epoch);
 
     printf("Truth Table Learned:\n\n");
     printf("Input   \t Oi \t\t Si \t\t (Oi-Si)^2\n");
     printf("------------------------------------------------------------\n");
     for i = inputs
-        Oi = g(W*i.pattern');
+        Oi = params.g(W*i.pattern');
         Si = i.output;
         diff = abs(Oi-Si)^2;
         for v = i.pattern
