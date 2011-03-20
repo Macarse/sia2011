@@ -1,9 +1,12 @@
+
 function y = main()
+    global g_diff;
 
-    
-
+    beta = 0.5;
+    g = inline(sprintf('tanh(%f*x)', beta));
+	g_diff = inline(sprintf('(%f) * (1 - g(x).^2)', beta));
     eta = 2.5;
-    N = 5;
+    N = 2;
     random_seed = 1337;
     N_EPOCHS = 15000;
     rand('state', random_seed);
@@ -19,6 +22,7 @@ function y = main()
 
     error = tole + 1;
     epoch = 1;
+
     while (error > tole && epoch < N_EPOCHS)
         perm = randperm(length(inputs));
         inputs = inputs(perm);
@@ -27,7 +31,7 @@ function y = main()
         for xi_index = 1:length(inputs),
             xi = inputs(xi_index);                       % tomo una entrada al azar del conjunto de entradas
             h = potencial(W, xi);                        % calculo el potencial para esa entrada
-            
+
             O(xi_index) = g(h);                          % calculo la salida para ese potencial
             Si = inputs(xi_index);                            % obtengo la salida real para esta entrada
             delta_W = delta(Si.output, O(xi_index), eta, xi, h);          % calculo las correcciones
