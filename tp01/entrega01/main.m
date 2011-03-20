@@ -3,7 +3,7 @@ function y = main()
 
     params = getParams();
 
-    random_seed = 1337;
+    random_seed = 31337;
     rand('state', random_seed);
     randn('state', random_seed);
     
@@ -18,6 +18,7 @@ function y = main()
 
     error = tole + 1;
     epoch = 1;
+	error_per_epoch = [];
 
     while (error > tole && epoch < params.N_EPOCHS)
         perm = randperm(length(inputs));
@@ -34,11 +35,19 @@ function y = main()
             W = W + delta_W;                             % corrijo
         end
         error = calc_error(S, O);                       % calculo el error
+        error_per_epoch(epoch) = error;
         epoch = epoch + 1;
     end
 
+    figure(01)
+    plot([1:1:epoch-1], error_per_epoch);
+    xlabel("Epocas");
+    ylabel("Error Cuadratico medio");
+    title("Error Cuadratico medio por epoca");
+    replot
+    drawnow;
+
     printf("params:\n");
-    params
     printf("error: %f. Epochs: %d\n\n", error, epoch);
 
     printf("Truth Table Learned:\n\n");
