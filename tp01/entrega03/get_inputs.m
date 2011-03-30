@@ -9,10 +9,18 @@ function ret = get_inputs(params)
             k = j-1;
             temp(j) = mod(floor( i / (2^(N-k))), 2);
         end
+        for j = 1:(N+1)
+            temp(j) = (temp(j)==1)*1-(temp(j)!=1);
+        end
+        
         out = real_output(temp);
 
         inputs(i).pattern = temp;
         inputs(i).output = out;
     end
     ret = inputs;
+    for i = ret
+        [i.pattern,i.output];
+        
+    end
 end

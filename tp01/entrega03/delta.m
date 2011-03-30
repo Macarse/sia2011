@@ -1,4 +1,4 @@
-function ret = delta(S, O, h, g_diff, W)
+function ret = delta(S, O, h, g_diff, W, params)
     ret = {};
     ret(length(W)) =  g_diff(h{length(W)}) * (S - O);
 
@@ -10,7 +10,7 @@ function ret = delta(S, O, h, g_diff, W)
         delta_ii = ret{i+1};
         g_diff(h{i});
 
-        ret{i} = g_diff(h{i}) .* (Wii*delta_ii);
+        ret{i} = (g_diff(h{i})+params.gradient_padding) .* (Wii*delta_ii);
     end
 
 

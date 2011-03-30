@@ -1,6 +1,7 @@
 
 function y = main()
 
+    errors = [];
     params = getParams();
 
     random_seed = 1337;
@@ -30,7 +31,7 @@ function y = main()
 
             O(xi_index) = params.g(h{length(W)});                          % calculo la salida para ese potencial
             Si = xi.output;                            % obtengo la salida real para esta entrada
-            delta_mini = delta(Si, O(xi_index), h, params.g_diff, W);          % calculo las correcciones
+            delta_mini = delta(Si, O(xi_index), h, params.g_diff, W, params);          % calculo las correcciones
             delta_w = calc_delta_w(delta_mini, params.eta, h, params.g, xi.pattern);
             % corrijo
             W = apply_deltas(W, delta_w);
@@ -42,6 +43,7 @@ function y = main()
         end
         error = calc_error(S, O);                       % calculo el error
         epoch = epoch + 1;
+        errors(epoch) = error;
         printf("%d\t%f\n", epoch, error);
         more off;
 %          W
@@ -55,11 +57,12 @@ function y = main()
     printf("Input   \t Oi \t\t Si \t\t (Oi-Si)^2\n");
     printf("------------------------------------------------------------\n");
     for i = inputs
-        Oi = params.g(W*i.pattern');
+        h = potencial(W, i, params);
+        Oi = params.g(h{length(W)});
         Si = i.output;
         diff = abs(Oi-Si)^2;
         for v = i.pattern
-            if (v)
+            if (v==1)
                 c = 1;
             else 
                 c = 0;
@@ -70,6 +73,7 @@ function y = main()
     end 
 
     y = W;
+    errors
 
 
 end

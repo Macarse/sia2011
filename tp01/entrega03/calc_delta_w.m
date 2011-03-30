@@ -8,6 +8,5 @@ function ret = calc_delta_w(delta_mini, eta, h, g, input)
         ret(i+1) = eta * delta_mini_i * ghi;
     end
     ret(1) = eta * delta_mini{1} * input;
-    ret
 
 end
