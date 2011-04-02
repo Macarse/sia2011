@@ -44,9 +44,11 @@ function y = main()
         error = calc_error(S, O);                       % calculo el error
         epoch = epoch + 1;
         errors(epoch) = error;
-        printf("%d\t%f\n", epoch, error);
-        more off;
-%          W
+
+	if ( mod(epoch,10) == 0 )
+		printf("%d\t%f\n", epoch, error);
+        	more off;
+	endif
     end
 
     printf("params:\n");

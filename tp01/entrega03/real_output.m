@@ -9,5 +9,4 @@ function ret = real_output(pattern)
         ret = 1;
     else
         ret = -1;
-   % [pattern, ret]
 end
