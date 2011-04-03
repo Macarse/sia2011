@@ -1,5 +1,7 @@
 
 function y = main()
+    xs = [0:0.01:4];
+    ys = func(xs);
 
     errors = [];
     params = getParams();
@@ -45,10 +47,16 @@ function y = main()
         epoch = epoch + 1;
         errors(epoch) = error;
 
-	if ( mod(epoch,10) == 0 )
-		printf("%d\t%f\n", epoch, error);
-        	more off;
-	endif
+        if ( mod(epoch,10) == 0 )
+            printf("%d\t%f\n", epoch, error);
+            more off;
+            hold off;
+            plot(xs, ys, "r");
+			hold on;
+			plot(xs, O, "b");
+            drawnow;
+        endif
+
     end
 
     printf("params:\n");
