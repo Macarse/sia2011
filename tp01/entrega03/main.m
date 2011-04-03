@@ -1,6 +1,6 @@
 
 function y = main()
-    xs = [0:0.01:4];
+    xs = [0:0.01:2];
     ys = func(xs);
 
     errors = [];
@@ -53,7 +53,7 @@ function y = main()
             hold off;
             plot(xs, ys, "r");
 			hold on;
-			plot(xs, O, ".b");
+			plot(xs, net(xs, W, params), "b");
             drawnow;
         endif
 

@@ -8,7 +8,7 @@ function params = getParams()
     params.MIN_WEIGHT = -0.5;
 
     params.INPUTS_QTY = 1;
-    params.hidden = [15,13];
+    params.hidden = [10,13];
     params.OUTPUTS_QTY = 1;
 
     params.N_EPOCHS = 20000;
