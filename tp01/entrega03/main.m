@@ -53,7 +53,7 @@ function y = main()
             hold off;
             plot(xs, ys, "r");
 			hold on;
-			plot(xs, O, "b");
+			plot(xs, O, ".b");
             drawnow;
         endif
 
