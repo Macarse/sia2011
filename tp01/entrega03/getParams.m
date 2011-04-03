@@ -17,4 +17,13 @@ function params = getParams()
     % set to 0.0 to use no gradient padding improvement
     params.gradient_padding = 0.10;
 
+    % -- ADAPTATIVE ETA --
+    params.use_adaptive_eta = true;
+    params.adaptive_eta_a = 0.01;
+    params.adaptive_eta_b = 0.05;
+    params.adaptive_eta_steps = 3;
+    params.adaptive_eta_increment = 0.000001;
+    params.adaptive_eta_decrement = 0.000001;
+	params.adaptive_eta_last_decremented = 1;
+
 end
