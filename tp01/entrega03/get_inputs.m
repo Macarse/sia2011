@@ -1,26 +1,12 @@
-function ret = get_inputs(params)
+function ret = get_inputs()
 
-    N = params.INPUTS_QTY;
-    inputs = []; 
-    for i = 1:(2^N)
-        temp = zeros(1,N+1);
-        temp(1) = -1;
-        for j = 2:(N+1)
-            k = j-1;
-            temp(j) = mod(floor( i / (2^(N-k))), 2);
-        end
-        for j = 1:(N+1)
-            temp(j) = (temp(j)==1)*1-(temp(j)!=1);
-        end
-        
-        out = real_output(temp);
+    ret = []; 
 
-        inputs(i).pattern = temp;
-        inputs(i).output = out;
-    end
-    ret = inputs;
-    for i = ret
-        [i.pattern,i.output];
-        
+    pos = 1;
+    for i = 0:0.001:4
+
+        ret(pos).pattern = i;
+        ret(pos).output = func(i);
+        pos = pos+1;
     end
 end

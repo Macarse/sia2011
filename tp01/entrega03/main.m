@@ -10,6 +10,7 @@ function y = main()
     
     W = init_weights(params);
     inputs = get_inputs(params);
+
     S = zeros(length(inputs));
     for i = 1:length(inputs),
         S(i) = inputs(i).output;
@@ -28,7 +29,9 @@ function y = main()
         for xi_index = 1:length(inputs),
             xi = inputs(xi_index);                       % tomo una entrada al azar del conjunto de entradas
             h = potencial(W, xi, params);                        % calculo el potencial para esa entrada
-
+			printf("hola\n");
+			h
+			params.g(h{length(W)})
             O(xi_index) = params.g(h{length(W)});                          % calculo la salida para ese potencial
             Si = xi.output;                            % obtengo la salida real para esta entrada
             delta_mini = delta(Si, O(xi_index), h, params.g_diff, W, params);          % calculo las correcciones

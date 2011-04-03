@@ -7,8 +7,8 @@ function params = getParams()
     params.MAX_WEIGHT = 0.5;
     params.MIN_WEIGHT = -0.5;
 
-    params.INPUTS_QTY = 4;
-    params.hidden = [9,4,6,4];
+    params.INPUTS_QTY = 1;
+    params.hidden = [2,13];
     params.OUTPUTS_QTY = 1;
 
     params.N_EPOCHS = 20000;

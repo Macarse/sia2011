@@ -1,5 +1,4 @@
 function ret = potencial(W, xi, params)
-    
     input_i = xi.pattern';
 
     for i = 1:length(W),
