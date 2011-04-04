@@ -1,6 +1,6 @@
 
 function y = main()
-    xs = [0:0.01:2];
+    xs = [0:0.01:4];
     ys = func(xs);
 
     errors = [];
