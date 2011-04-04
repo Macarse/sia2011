@@ -3,6 +3,8 @@ function params = getParams()
     params.g = inline(sprintf('tanh(%f*x)', params.beta));
     params.g_diff = inline(sprintf('(%f) * (1 - %s.^2)', params.beta, formula(params.g)));
 
+    params.m = 1;    
+
     params.MAX_WEIGHT = 0.5;
     params.MIN_WEIGHT = -0.5;
 

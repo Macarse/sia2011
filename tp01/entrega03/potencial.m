@@ -7,4 +7,5 @@ function ret = potencial(W, xi, params)
         input_i(1) = -1;
     end
 
+
 end

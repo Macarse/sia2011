@@ -1,6 +1,8 @@
 function ret = delta(S, O, h, g_diff, W, params)
     ret = {};
-    ret(length(W)) =  g_diff(h{length(W)}) * (S - O);
+    ret(length(W)) = params.m * (S - O);
+
+                % antes era  g_diff(h{length(W)}) * (S - O);
 
     for i = length(W)-1:-1:1,
 

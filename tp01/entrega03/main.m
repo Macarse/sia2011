@@ -30,7 +30,8 @@ function y = main()
         for xi_index = 1:length(inputs),
             xi = inputs(xi_index);                       % tomo una entrada al azar del conjunto de entradas
             h = potencial(W, xi, params);                        % calculo el potencial para esa entrada
-            O(xi_index) = params.g(h{length(W)});                          % calculo la salida para ese potencial
+            O(xi_index) =  params.m * h{length(W)};   % antes era params.g(h{length(W)});
+                        % ^^^ calculo la salida para ese potencial
             Si = xi.output;                            % obtengo la salida real para esta entrada
             delta_mini = delta(Si, O(xi_index), h, params.g_diff, W, params);          % calculo las correcciones
             delta_w = calc_delta_w(delta_mini, params.eta, h, params.g, xi.pattern);
