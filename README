@@ -6,3 +6,13 @@ tp01
 ====
 Trabajo especial sobre Redes Neuronales.
 Dentro de esta carpeta se encuentran las tres entregas correspondientes.
+
+Para correr el programa, entrar a la carpeta "tp01/entrega01",
+ejecutar el comando "octave", y dentro del intérprete ejecutar "main".
+
+Para editar los parámetros del programa se debe editar el archivo
+getParams.m con un editor de texto. Los parámetros son auto explicativos
+o tienen comentarios en caso contrario
+
+
+

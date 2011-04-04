@@ -57,12 +57,14 @@ function y = main()
 
         if ( mod(epoch,10) == 0 )
             printf("%d\t%f\n", epoch, error);
+	    %if (!(error > tole && epoch < params.N_EPOCHS))
             more off;
             hold off;
             plot(xs, ys, "r");
             hold on;
             plot(xs, net(xs, W, params), "b");
             drawnow;
+	    %endif
         endif
 
     end
@@ -91,7 +93,7 @@ function y = main()
     end 
 
     y = W;
-    errors
+    plot(errors);
 
 
 end
