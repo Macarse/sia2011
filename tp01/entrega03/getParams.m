@@ -3,7 +3,9 @@ function params = getParams()
     params.g = inline(sprintf('tanh(%f*x)', params.beta));
     params.g_diff = inline(sprintf('(%f) * (1 - %s.^2)', params.beta, formula(params.g)));
 
-    params.m = 1;    
+    params.m = 1;
+    params.repeat = 0; % set to 0 to deactivate pattern repetition
+    params.step = 0.01;
 
     params.MAX_WEIGHT = 0.5;
     params.MIN_WEIGHT = -0.5;
@@ -16,7 +18,7 @@ function params = getParams()
     params.tolerancia = 10^(-2);
 
     % set to 0.0 to use no gradient padding improvement
-    params.gradient_padding = 0.10;
+    params.gradient_padding = 0.0;
 
     % -- ADAPTATIVE ETA --
     params.eta = 0.02;
