@@ -22,7 +22,6 @@ function y = main()
 
     error = tole + 1;
     epoch = 0;
-
     while (error > tole && epoch < params.N_EPOCHS)
         perm = randperm(length(inputs));
         inputs = inputs(perm);
@@ -36,6 +35,10 @@ function y = main()
             delta_mini = delta(Si, O(xi_index), h, params.g_diff, W, params);          % calculo las correcciones
             delta_w = calc_delta_w(delta_mini, params.eta, h, params.g, xi.pattern);
             % corrijo
+            if ( exist ("old_delta_w", "var"))
+                delta_w = apply_momentum(old_delta_w, delta_w, params);
+            endif
+            old_delta_w = delta_w;
             W = apply_deltas(W, delta_w);
         end
         for xi_index = 1:length(inputs),

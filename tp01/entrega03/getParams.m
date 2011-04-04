@@ -26,4 +26,8 @@ function params = getParams()
     params.adaptive_eta_decrement = 0.000001;
     params.adaptive_eta_last_decremented = 1;
 
+    % -- momentum --
+    % set to 0.0 to use no momentum
+    params.momentum_alpha = 0.5;
+
 end
