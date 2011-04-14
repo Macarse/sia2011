@@ -1,14 +1,18 @@
 #! /usr/bin/python
-
+import sys
 import Image
 
-name = "line4"
+def main():
+ path = sys.argv[1]
 
-im = Image.open("images/"+name+".png")
-data = im.getdata()
-fin = open("data/"+name+".txt","w")
-for t in data:
-	r = t[0]
-	bool = -1 if r == 0 else 1
-	fin.write(str(bool)+"\n")
-fin.close()
+ im = Image.open(path)
+ data = im.getdata()
+ fin = open("data/"+name+".txt","w")
+ for t in data:
+  r = t[0]
+  bool = -1 if r == 0 else 1
+  fin.write(str(bool)+"\n")
+ fin.close()
+
+if __name__ == '__main__':
+ main()
