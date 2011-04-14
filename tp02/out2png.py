@@ -1,8 +1,10 @@
 # -*- coding: iso-8859-1 -*-
 import Image
+import sys
+
 
 def main():
- name = 'asd'
+ name = sys.argv[1]
  v = [int(i.strip()) for i in open('output/'+name+".txt")]
 
  img = Image.new('RGB', (64, 64), "black")

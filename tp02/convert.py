@@ -2,9 +2,10 @@
 import sys
 import Image
 
-def main():
+def convert():
  path = sys.argv[1]
  im = Image.open(path)
+ name = path.split("/")[-1].split(".")[0]
  data = im.getdata()
  fin = open("data/"+name+".txt","w")
  for t in data:
@@ -14,4 +15,4 @@ def main():
  fin.close()
 
 if __name__ == '__main__':
- main()
+ convert()
