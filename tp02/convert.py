@@ -4,7 +4,6 @@ import Image
 
 def main():
  path = sys.argv[1]
-
  im = Image.open(path)
  data = im.getdata()
  fin = open("data/"+name+".txt","w")
