@@ -16,3 +16,16 @@ o tienen comentarios en caso contrario
 
 
 
+tp02
+====
+Trabajo especial sobre Modelo de Hopfield
+Dentro de esta carpeta se encuentra la entrega de este trabajo.
+
+Para correr el programa siga estos pasos:
+
+
+1. Poner los patrones que se quieran usar en las carpetas patterns y test_patterns (en forma de imagenes). Las imagenes que se pongan en la carpeta patterns se usaran para entrenar la red, y los patrones que se pongan en la carpeta test_patterns se usaran para testear la red.
+
+2. Ejecutar python main.py dentro de la carpeta tp02/
+
+3. Los resultados quedan en output_img (salida de la red al aplicarle los patrones de testeo)
