@@ -1,0 +1,7 @@
+#! /bin/bash
+
+rm output/*
+rm output_img/*
+rm patterns/*
+rm test_patterns/*
+rm data/*
