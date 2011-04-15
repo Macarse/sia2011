@@ -71,8 +71,9 @@ def main():
  gptt_file.close()
  print "get_patterns_to_test.m file written"
  
- # TODO: HERE WE SHOULD RUN main.m in octave!
- # TODO! TODO! TODO! TODO! TODO! TODO! 
+ # HERE WE SHOULD RUN main.m in octave!
+ print "running octave scripted main"
+ os.system('./scripted_main')
  
  # convert data output from octave to images
  for index, item in enumerate(test_patterns):

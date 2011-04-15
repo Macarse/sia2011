@@ -37,7 +37,7 @@ function ret = main()
             S
         until (all(S(i,:) == S(i-1,:)))
 
-        filename = ["output/",int2str(image_index),".txt"]
+        filename = ["output/",int2str(image_index),".txt"];
 
         fid=fopen(filename, 'w');
         for value = S(i,:)
