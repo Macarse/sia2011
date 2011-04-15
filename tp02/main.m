@@ -39,7 +39,7 @@ function ret = main()
 
         filename = ["output/",int2str(image_index),".txt"]
 
-        fid=fopen('newFile.xls', 'w');
+        fid=fopen(filename, 'w');
         for value = S(i,:)
             fprintf(fid,'%d\n', value);
         end

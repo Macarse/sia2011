@@ -3,7 +3,7 @@ import Image
 import sys
 
 
-def main():
+def out2png():
  name = sys.argv[1]
  v = [int(i.strip()) for i in open('output/'+name+".txt")]
 
@@ -23,4 +23,4 @@ def get_value(v):
   return (255,255,255)
 
 if __name__ == '__main__':
- main()
+ out2png()
