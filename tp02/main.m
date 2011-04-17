@@ -5,7 +5,7 @@ function ret = main()
     randn('state', random_seed);
 
     patterns = get_patterns_to_memorize();
-    W = calc_weights(patterns);
+    W = calc_weights(patterns.values);
 
     more off;
 
@@ -13,14 +13,16 @@ function ret = main()
 
     image_index = 1;
 
-    for test_pattern_i = test_patterns',
+	name_index = 0;
+    for test_pattern_i = test_patterns.values',
+        name_index = name_index + 1;
         test_pattern_i = test_pattern_i';
         S = [];
         S(1,:) = test_pattern_i;
-        i = 1
+		i = 1;
 
         do
-            i = i + 1
+            i = i + 1;
             indices = [1:length(test_pattern_i)];
             perm_indices = indices(randperm(length(indices)));
             S_temp = [];
@@ -34,10 +36,9 @@ function ret = main()
             end
 
             S(i,:) = S_temp;
-            S
         until (all(S(i,:) == S(i-1,:)))
 
-        filename = ["output/",int2str(image_index),".txt"];
+        filename = ["output/",test_patterns.names(name_index),".txt"];
 
         fid=fopen(filename, 'w');
         for value = S(i,:)

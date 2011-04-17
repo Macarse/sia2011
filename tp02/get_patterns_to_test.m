@@ -1,10 +1,14 @@
 
 function ret = get_patterns_to_test()
+    ret = {};
+    ret.names = [
+           'h';
+           'f';
 
-    ret = [
-           load('data/letra_f.txt')';
-           load('data/letra_a.txt')';
-           load('data/letra_h.txt')';
+    ];
+    ret.values = [
+           load('data/h.txt')';
+           load('data/f.txt')';
 
     ];
 end
