@@ -19,7 +19,7 @@ function ret = main()
         test_pattern_i = test_pattern_i';
         S = [];
         S(1,:) = test_pattern_i;
-		i = 1;
+        i = 1;
 
         do
             i = i + 1;
@@ -38,7 +38,7 @@ function ret = main()
             S(i,:) = S_temp;
         until (all(S(i,:) == S(i-1,:)))
 
-        filename = ["output/",test_patterns.names(name_index),".txt"];
+        filename = ["output/",test_patterns.names{name_index},".txt"];
 
         fid=fopen(filename, 'w');
         for value = S(i,:)

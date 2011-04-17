@@ -8,9 +8,9 @@ DATA = 'data'
 GET_PATTERNS_TO_MEMORIZE_CODE = """
 function ret = get_patterns_to_memorize()
     ret = {};
-    ret.names = [
+    ret.names = {
 %s
-    ];
+    };
     ret.values = [
 %s
             ];
@@ -21,9 +21,9 @@ end
 GET_PATTERNS_TO_TEST_CODE = """
 function ret = get_patterns_to_test()
     ret = {};
-    ret.names = [
+    ret.names = {
 %s
-    ];
+    };
     ret.values = [
 %s
     ];
