@@ -21,6 +21,18 @@ tp02
 Trabajo especial sobre Modelo de Hopfield
 Dentro de esta carpeta se encuentra la entrega de este trabajo.
 
+Dependencias
+============
+ * Python
+ * PIL http://www.pythonware.com/products/pil/
+
+Configuracion
+=============
+Es posible que deba configurar /tp02/scripted_main para poder
+ejecutar archivos .m desde la consola.
+
+Ver: http://octave.1599824.n4.nabble.com/How-to-run-Octave-scripts-with-MacOS-td2131572.html
+
 Para correr el programa siga estos pasos:
 
 
