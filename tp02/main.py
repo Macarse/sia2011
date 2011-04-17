@@ -42,16 +42,19 @@ def main():
  load_list_test = ""
  memorize_patterns = os.listdir(MEMORIZE_PATTERNS)
  test_patterns = os.listdir(TEST_PATTERNS)
- for item in memorize_patterns+test_patterns:
+
+ for item in set(memorize_patterns+test_patterns):
   path = os.path.join(MEMORIZE_PATTERNS if item in memorize_patterns else TEST_PATTERNS, item)
   name = item.split(".")[0]
-  if ".gitignore" in path or \
+
+  if not path.endswith(".png") or \
        not os.path.isfile(path):
       continue
-  
+
   # convert images to octave data files
+
   conversion(path)
-  
+
   # inject data objects in octave get_pattern scripts
   load_element = LOAD_TEMPLATE % (os.path.join(DATA, name+".txt"))
   if item in memorize_patterns and load_element not in load_list:
@@ -76,10 +79,11 @@ def main():
  os.system('./scripted_main')
  
  # convert data output from octave to images
- for index, item in enumerate(test_patterns):
+ for index, item in enumerate([item for item in test_patterns if item.endswith(".png")]):
   path = os.path.join(TEST_PATTERNS, item)
   name = item.split(".")[0]
-  if ".gitignore" in path or \
+
+  if not path.endswith(".png") or \
        not os.path.isfile(path):
       continue
   dump_image(str(index+1))
