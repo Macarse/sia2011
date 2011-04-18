@@ -5,15 +5,24 @@ function ret = main()
     randn('state', random_seed);
 
     patterns = get_patterns_to_memorize();
-    W = calc_weights(patterns.values);
-
+    w = calc_weights(patterns.values);
     more off;
 
-    test_patterns = get_patterns_to_test();
+    for (i = 1:rows(patterns.values))
+        if (fixpoint(w.ws, patterns.values(i,:)))
+            printf("Pattern %s is a fixed point\n", patterns.names{i});
+        endif
 
+        crosstalk = sum(sum(((w.ws_o * patterns.values(i, :)')' - patterns.values(i, :) > 1)));
+        if (crosstalk != 0)
+            printf("Pattern %s -> crosstalk %d\n", patterns.names{i}, crosstalk);
+        endif
+    endfor
+
+    test_patterns = get_patterns_to_test();
     image_index = 1;
 
-	name_index = 0;
+    name_index = 0;
     for test_pattern_i = test_patterns.values',
         name_index = name_index + 1;
         test_pattern_i = test_pattern_i';
@@ -29,10 +38,9 @@ function ret = main()
             S_temp = S(i-1,:);
             j = 2;
             for index = perm_indices,
-                new_state = sign( W(index,:) * S_temp(index)' );
+                new_state = sign( w.ws(index,:) * S_temp(index)' );
                 S_temp(index) = (new_state(index) == 0) * S_temp(index) + new_state(index);
                 j = j + 1;
-                S_temp;
             end
 
             S(i,:) = S_temp;
