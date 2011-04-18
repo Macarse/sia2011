@@ -1,16 +1,18 @@
 
 function ret = get_patterns_to_memorize()
     ret = {};
-    ret.names = [
-           'h';
-           'a';
-           'f';
+    ret.names = {
+           'line4';
+           'line1';
+           'line2';
+           'line3';
 
-    ];
+    };
     ret.values = [
-           load('data/h.txt')';
-           load('data/a.txt')';
-           load('data/f.txt')';
+           load('data/line4.txt')';
+           load('data/line1.txt')';
+           load('data/line2.txt')';
+           load('data/line3.txt')';
 
             ];
 

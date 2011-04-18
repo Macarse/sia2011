@@ -38,13 +38,14 @@ function ret = main()
             S_temp = S(i-1,:);
             j = 2;
             for index = perm_indices,
-                new_state = sign( w.ws(index,:) * S_temp(index)' );
-                S_temp(index) = (new_state(index) == 0) * S_temp(index) + new_state(index);
+                new_state = sign( w.ws(index,:) * S_temp' );
+                S_temp(index) = (new_state == 0) * S_temp(index) + new_state;
                 j = j + 1;
             end
 
             S(i,:) = S_temp;
         until (all(S(i,:) == S(i-1,:)))
+        i
 
         filename = ["output/",test_patterns.names{name_index},".txt"];
 
